@@ -14,18 +14,19 @@ Home_154.
     Первый сожержит строковой индекс и Ф.И.О.
     Второй содержит цифровой индекс и оценку [1-5]
 */
+using System;
 Console.Clear();
 
 // Задаем массивы
 string[,] famArray = {
 //  ID      Family
-    {"5",   "Беловошин В.Е."},
     {"3",   "Карпов О.Е."},
     {"7",   "Сергеев С.А."},
     {"2",   "Воронов В.Н."},
     {"6",   "Зинченко Г.А."},
     {"4",   "Кузнецов М.Н."},
     {"8",   "Афонин О.П."},
+    {"5",   "Беловошин В.Е."},
     {"9",   "Щетинин С.В."},
     {"1",   "Тимохин А.А."},
     {"10",  "Жукин С.В."}
@@ -62,8 +63,10 @@ void prntArrays(string[,] famArray)
 string[,] BubbleSort(string[,] inArray)
 {
     for (int i = 0; i < inArray.GetLength(0) - 1; i++)
-        if (string.CompareOrdinal(inArray[i, 1], inArray[i + 1, 1]) > 0)
+    {
+        if (string.Compare(inArray[i, 1], inArray[i + 1, 1]) > 0)
         {
+
             // для ID
             string temp0 = inArray[i, 0];
             inArray[i, 0] = inArray[i + 1, 0];
@@ -74,6 +77,7 @@ string[,] BubbleSort(string[,] inArray)
             inArray[i, 1] = inArray[i + 1, 1];
             inArray[i + 1, 1] = temp1;
         }
+    }
     return inArray;
 }
 
@@ -81,5 +85,4 @@ Console.WriteLine("\nИсходный массив:\n");
 prntArrays(famArray);
 
 Console.WriteLine("\nСортировка по столбцам:\n");
-famArray = BubbleSort(famArray);
-prntArrays(famArray);
+prntArrays(BubbleSort(famArray));
