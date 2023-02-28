@@ -64,18 +64,24 @@ string[,] BubbleSort(string[,] inArray)
 {
     for (int i = 0; i < inArray.GetLength(0) - 1; i++)
     {
-        if (string.Compare(inArray[i, 1], inArray[i + 1, 1]) > 0)
+        for (int j = i + 1; j < inArray.GetLength(0); j++)
         {
+            if (string.Compare(inArray[i, 1], inArray[j, 1]) > 0)
+            {
 
-            // для ID
-            string temp0 = inArray[i, 0];
-            inArray[i, 0] = inArray[i + 1, 0];
-            inArray[i + 1, 0] = temp0;
+                // для ID
+                string temp0 = inArray[i, 0];
+                inArray[i, 0] = inArray[j, 0];
+                inArray[j, 0] = temp0;
 
-            // для Фамилий
-            string temp1 = inArray[i, 1];
-            inArray[i, 1] = inArray[i + 1, 1];
-            inArray[i + 1, 1] = temp1;
+                // для Фамилий
+                string temp1 = inArray[i, 1];
+                inArray[i, 1] = inArray[j, 1];
+                inArray[j, 1] = temp1;
+                
+                // Вывод перемещений фамилий
+                // Console.WriteLine($"{inArray[i, 1]} <-> {inArray[j, 1]}");
+            }
         }
     }
     return inArray;
